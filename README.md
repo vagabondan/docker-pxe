@@ -5,11 +5,15 @@ This Docker image is suitable for running a DHCP + TFTP + HTTP servers for your 
 network.  It uses ISC DHCP, TFTP, Apache2 servers which are bundled with the latest Ubuntu
 LTS distribution.
 
+Many thanks to [![NetworkBoot.org](https://github.com/networkboot)](https://github.com/networkboot/docker-dhcpd "See more on networkboot/dhcpd")! Their ideas in dockerizing DHCP server lay into the basis of this repository.
+
+
+
 How to build
 ============
 
  1. Install Docker with the instructions on <https://www.docker.com>.
- 2. Run `./build` to create the local docker image `networkboot/dhcpd`.
+ 2. Run `./build` to create the local docker image `vagabondan/pxe`.
 
 
 TEXT BELOW IS UNDER CONSTRUCTION
@@ -23,12 +27,12 @@ the DHCP server, start the container with the `--net=host` docker run
 option and specify the network interface you want to provide DHCP service
 on.
 
- 1. Create `data` folder.
- 2. Create `data/dhcpd.conf` with a subnet clause for the specified
+ 1. Create `dhcp` folder.
+ 2. Create `dhcp/dhcpd.conf` with a subnet clause for the specified
     network interface.  If you need assistance, you can run
     `docker run -it --rm networkboot/dhcpd man dhcpd.conf` for a description
     of the configuration file syntax.
- 3. Run `docker run -it --rm --net=host -v "$(pwd)/data":/data networkboot/dhcpd eth0`.
+ 3. Run `docker run -it --rm --net=host -v "$(pwd)/dhcp":/dhcp networkboot/dhcpd eth0`.
     `dhcpd` will automatically start and display its logs on the console.
     You can press Ctrl-C to terminate the server.
 
@@ -39,14 +43,14 @@ Notes
 =====
 
 The entrypoint script in the docker image takes care of running the DHCP
-server as the same user that owns the `data` folder.  This ensures that the
-permissions on the files inside the `data` folder is kept consistent.  If
-the `data` folder is owned by root, dhcpd is run as the normal dhcpd user.
+server as the same user that owns the `dhcp` folder.  This ensures that the
+permissions on the files inside the `dhcp` folder is kept consistent.  If
+the `dhcp` folder is owned by root, dhcpd is run as the normal dhcpd user.
 
 If you forget to run the docker container with the `--net=host` option a
 warning will be emitted informing you that you've probably forgotten it.
 
-If a `/data` volume is not provided with a `dhcpd.conf` inside it, the
+If a `/dhcp` volume is not provided with a `dhcpd.conf` inside it, the
 container will exit early with an error message.
 
 ===========================================================================
