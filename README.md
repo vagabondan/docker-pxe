@@ -13,7 +13,7 @@ How to build
 
 
 TEXT BELOW IS UNDER CONSTRUCTION
-
+==================================================================
 How to use
 ==========
 
@@ -49,6 +49,8 @@ warning will be emitted informing you that you've probably forgotten it.
 If a `/data` volume is not provided with a `dhcpd.conf` inside it, the
 container will exit early with an error message.
 
+===========================================================================
+
 Acknowledgements
 ================
 
@@ -57,15 +59,11 @@ This image uses the following software components:
  * Ubuntu Linux distribution from <https://www.ubuntu.com>.
  * ISC DHCP server from <https://www.isc.org/downloads/dhcp/>.
  * Dumb-init from <https://github.com/Yelp/dumb-init>.
+ * Dockerized DHCP server from <https://github.com/networkboot/docker-dhcpd>
 
 Copyright & License
 ===================
 
-This project is copyright 2017 Robin Smidsrød <robin@smidsrod.no>.
+This project is copyright 2018 Vagabondan <strannix.vagabondan@gmail.com>.
 
-It is licensed under the Apache 2.0 license.
-
-See the file LICENSE for full legal details.
-=======
-# docker-pxe
->>>>>>> 0bd16fcfcb964d9244d0f11ca5779676ad063f8c
+It is licensed under the MIT license.
