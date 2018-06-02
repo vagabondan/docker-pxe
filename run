@@ -1,5 +1,7 @@
 #!/bin/bash
 pushd $(dirname $0) >/dev/null
-data_dir="$(pwd)/dhcp"
-docker run -tid --rm --net=host -v "$data_dir":/data --name dhcpd vagabondan/dhcpd "$@"
+dhcp_dir="$(pwd)/dhcp"
+tftp_dir="$(pwd)/tftp"
+http_dir="$(pwd)/http"
+docker run -tid --rm --net=host -v "$dhcp_dir":/data -v "$tftp_dir":/tftp -v /var/www/html:/var/www/html --name pxe vagabondan/pxe "$@"
 popd >/dev/null

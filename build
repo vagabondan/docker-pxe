@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t vagabondan/dhcpd "$@" $(dirname $0)
+docker build -t vagabondan/pxe "$@" $(dirname $0)
