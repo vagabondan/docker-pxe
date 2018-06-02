@@ -20,7 +20,7 @@ RUN apt-get -q -y update \
 # using dumb-init instead of original init to orchestrate children
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.1/dumb-init_1.2.1_amd64 \
  && chmod +x /usr/local/bin/dumb-init \
- && git clone https://github.com/vagabondan/docker-dhcpd.git .
+ && git clone https://github.com/vagabondan/docker-pxe.git .
 
 # centos7
 # RUN mkdir -p /tftp/centos/7 \
