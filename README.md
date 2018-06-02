@@ -1,4 +1,4 @@
-Docker image for ISC DHCP server
+Docker image for PXE server
 ================================
 
 This Docker image is suitable for running a DHCP + TFTP + HTTP servers for your docker host
