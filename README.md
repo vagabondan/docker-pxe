@@ -1,10 +1,8 @@
 Docker image for ISC DHCP server
 ================================
 
-[![](https://images.microbadger.com/badges/image/networkboot/dhcpd.svg)](https://microbadger.com/images/networkboot/dhcpd "See more networkboot/dhcpd image details")
-
-This Docker image is suitable for running a DHCP server for your docker host
-network.  It uses ISC DHCP server which is bundled with the latest Ubuntu
+This Docker image is suitable for running a DHCP + TFTP + HTTP servers for your docker host
+network.  It uses ISC DHCP, TFTP, Apache2 servers which are bundled with the latest Ubuntu
 LTS distribution.
 
 How to build
@@ -12,6 +10,9 @@ How to build
 
  1. Install Docker with the instructions on <https://www.docker.com>.
  2. Run `./build` to create the local docker image `networkboot/dhcpd`.
+
+
+TEXT BELOW IS UNDER CONSTRUCTION
 
 How to use
 ==========
@@ -65,3 +66,6 @@ This project is copyright 2017 Robin Smidsrød <robin@smidsrod.no>.
 It is licensed under the Apache 2.0 license.
 
 See the file LICENSE for full legal details.
+=======
+# docker-pxe
+>>>>>>> 0bd16fcfcb964d9244d0f11ca5779676ad063f8c
