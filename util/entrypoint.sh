@@ -63,6 +63,7 @@ if [ -n "$IFACE" ]; then
         echo "You must add the 'docker run' option '--net=host' if you want to provide DHCP service to the host network."
     fi
 
+    /usr/sbin/in.tftpd --listen --address :69 --secure /var/lib/tftpboot
     exec $init -- /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
 else
     # Run another binary
