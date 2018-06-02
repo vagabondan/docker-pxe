@@ -1,0 +1,23 @@
+
+timeout 100
+default menu.c32
+
+mentu title ########## PXE Boot Menu ##########
+label centos7
+  menu label Install CentOS 7
+  kernel centos/7/vmlinuz
+  append initrd=centos/7/initrd.img method=http://172.16.2.161/centos7 devfs=nomount
+
+label ubuntu1604
+  menu label Install Ubuntu 16.04
+  kernel ubuntu/1604/linux
+  append initrd=ubuntu/1604/initrd.gz vga=788 locale=en_GB.UTF-8 keyboard-configuration/layoutcode=gb hostname=ub
+
+label ubuntu1804
+  menu label Install Ubuntu 18.04
+  kernel ubuntu/1804/linux
+  append initrd=ubuntu/1804/initrd.gz vga=788 locale=en_GB.UTF-8 keyboard-configuration/layoutcode=gb hostname=ub method=http://172.16.2.161/ubuntu/mate/1804 devfs=nomount
+
+label localboot
+  menu label Boot from local drive
+  localboot

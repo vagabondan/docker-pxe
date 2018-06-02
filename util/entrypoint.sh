@@ -29,22 +29,22 @@ fi
 if [ -n "$IFACE" ]; then
     # Run dhcpd for specified interface or all interfaces
 
-    data_dir="/data"
-    if [ ! -d "$data_dir" ]; then
-        echo "Please ensure '$data_dir' folder is available."
-        echo 'If you just want to keep your configuration in "data/", add -v "$(pwd)/data:/data" to the docker run command line.'
+    dhcp_dir="/dhcp"
+    if [ ! -d "$dhcp_dir" ]; then
+        echo "Please ensure '$dhcp_dir' folder is available."
+        echo 'If you just want to keep your configuration in "dhcp/", add -v "$(pwd)/dhcp:/dhcp" to the docker run command line.'
         exit 1
     fi
 
-    dhcpd_conf="$data_dir/dhcpd.conf"
+    dhcpd_conf="$dhcp_dir/dhcpd.conf"
     if [ ! -r "$dhcpd_conf" ]; then
         echo "Please ensure '$dhcpd_conf' exists and is readable."
         echo "Run the container with arguments 'man dhcpd.conf' if you need help with creating the configuration."
         exit 1
     fi
 
-    uid=$(stat -c%u "$data_dir")
-    gid=$(stat -c%g "$data_dir")
+    uid=$(stat -c%u "$dhcp_dir")
+    gid=$(stat -c%g "$dhcp_dir")
     if [ $gid -ne 0 ]; then
         groupmod -g $gid dhcpd
     fi
@@ -52,10 +52,10 @@ if [ -n "$IFACE" ]; then
         usermod -u $uid dhcpd
     fi
 
-    [ -e "$data_dir/dhcpd.leases" ] || touch "$data_dir/dhcpd.leases"
-    chown dhcpd:dhcpd "$data_dir/dhcpd.leases"
-    if [ -e "$data_dir/dhcpd.leases~" ]; then
-        chown dhcpd:dhcpd "$data_dir/dhcpd.leases~"
+    [ -e "$dhcp_dir/dhcpd.leases" ] || touch "$dhcp_dir/dhcpd.leases"
+    chown dhcpd:dhcpd "$dhcp_dir/dhcpd.leases"
+    if [ -e "$dhcp_dir/dhcpd.leases~" ]; then
+        chown dhcpd:dhcpd "$dhcp_dir/dhcpd.leases~"
     fi
 
     container_id=$(grep docker /proc/self/cgroup | sort -n | head -n 1 | cut -d: -f3 | cut -d/ -f3)
@@ -65,7 +65,7 @@ if [ -n "$IFACE" ]; then
 
     /usr/sbin/in.tftpd --listen --address :69 --secure /tftp
     /usr/sbin/apache2ctl start
-    exec $init -- /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$data_dir/dhcpd.conf" -lf "$data_dir/dhcpd.leases" $IFACE
+    exec $init -- /usr/sbin/dhcpd -4 -f -d --no-pid -cf "$dhcp_dir/dhcpd.conf" -lf "$dhcp_dir/dhcpd.leases" $IFACE
 else
     # Run another binary
     exec $init -- "$@"

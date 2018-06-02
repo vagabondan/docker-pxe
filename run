@@ -3,5 +3,6 @@ pushd $(dirname $0) >/dev/null
 dhcp_dir="$(pwd)/dhcp"
 tftp_dir="$(pwd)/tftp"
 http_dir="$(pwd)/http"
-docker run -tid --rm --net=host -v "$dhcp_dir":/data -v "$tftp_dir":/tftp -v /var/www/html:/var/www/html --name pxe vagabondan/pxe "$@"
+# docker run -tid --rm --net=host -v "$dhcp_dir":/dhcp -v "$tftp_dir":/tftp -v /var/www/html:/var/www/html --name pxe vagabondan/pxe "$@"
+docker run -tid --rm --net=host --name pxe vagabondan/pxe "$@"
 popd >/dev/null
