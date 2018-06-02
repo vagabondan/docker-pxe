@@ -19,7 +19,11 @@ substitute_variables_in_file(){
   prefix=$1
   template=$2
   file=$3
+  echo "Instantiating $file from $template for env vars with prefix $prefix "
   if [[ -e $file ]]; then
+    echo "$file already exists. Exitting..."
+  else
+    echo "$file does not exists. Creating..."
     cp ${template} ${file}
     eval 'vars=${!'"$prefix"'@}'
     for v in $vars ; do
