@@ -3,7 +3,7 @@
 set -e
 
 
-init="/usr/bin/dumb-init"
+init="/usr/local/bin/dumb-init"
 
 # Single argument to command line is interface name
 if [ $# -eq 1 -a -n "$1" ]; then
