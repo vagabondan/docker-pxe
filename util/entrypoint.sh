@@ -2,7 +2,6 @@
 
 set -e
 
-/app/util/instantiate_templates.sh DHCP_ /dhcp/template.dhcpd.conf /dhcp/dhcpd.conf
 
 init="/usr/local/bin/dumb-init"
 
@@ -38,6 +37,8 @@ if [ -n "$IFACE" ]; then
     fi
 
     dhcpd_conf="$dhcp_dir/dhcpd.conf"
+    # Create DHCP server config from template
+    /app/util/instantiate_templates.sh DHCPD_ $dhcp_dir/template.dhcpd.conf $dhcpd_conf
     if [ ! -r "$dhcpd_conf" ]; then
         echo "Please ensure '$dhcpd_conf' exists and is readable."
         echo "Run the container with arguments 'man dhcpd.conf' if you need help with creating the configuration."
