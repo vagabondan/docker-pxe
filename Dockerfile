@@ -24,8 +24,14 @@ RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/
 # && git clone https://github.com/vagabondan/docker-dhcpd.git .
 
 # centos7
-# RUN wget -O /var/lib/tftpboot/centos7/initrd.img http://mirror.centos.org/centos/7/os/x86_64/images/pxeboot/initrd.img \
-#  && wget -O /var/lib/tftpboot/centos7/vmlinuz http://mirror.centos.org/centos/7/os/x86_64/images/pxeboot/vmlinuz
+# RUN wget -O /tftp/centos/7/initrd.img http://mirror.centos.org/centos/7/os/x86_64/images/pxeboot/initrd.img \
+#  && wget -O /tftp/centos/7/vmlinuz http://mirror.centos.org/centos/7/os/x86_64/images/pxeboot/vmlinuz
+
+# RUN mkdir -p /tftp/ubuntu/1604 \
+#  && wget http://archive.ubuntu.com/ubuntu/ubuntu/dists/xenial/main/installer-amd64/current/images/netboot/netboot.tar.gz \
+# -O /tftp/ubuntu/1604/netboot.tar.gz \
+#  && tar -xvzf /tftp/ubuntu/1604/netboot.tar.gz -C /tftp/ubuntu/1604
+
 
 # For debug. Delete in release
 COPY . .
