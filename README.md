@@ -5,7 +5,7 @@ This Docker image is suitable for running a DHCP + TFTP + HTTP servers for your 
 network.  It uses ISC DHCP, TFTP, Apache2 servers which are bundled with the latest Ubuntu
 LTS distribution.
 
-Many thanks to @networkboot! Their ideas in dockerizing DHCP server lay into the basis of this repository.
+Many thanks to @networkboot(https://github.com/networkboot)! Their ideas in dockerizing DHCP server lay into the basis of this repository.
 
 
 
