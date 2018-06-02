@@ -2,6 +2,7 @@
 
 set -e
 
+/app/util/instantiate_templates.sh DHCP_ /app/dhcp/template.dhcpd.conf /dhcp/dhcpd.conf
 
 init="/usr/local/bin/dumb-init"
 

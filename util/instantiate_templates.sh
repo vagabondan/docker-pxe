@@ -17,9 +17,10 @@ echo ${PXE_HTTP_SERVER:=172.16.2.161}
 
 substitute_variables_in_file(){
   prefix=$1
-  file=$2
+  template=$2
+  file=$3
   if [[ -e $file ]]; then
-    cp ${file}.template ${file}
+    cp ${template} ${file}
     eval 'vars=${!'"$prefix"'@}'
     for v in $vars ; do
       eval 'value=${'$v'}'
@@ -30,4 +31,4 @@ substitute_variables_in_file(){
 }
 
 # prepare dhcpd.conf and launch DHCP server
-substitute_variables_in_file $1 $2
+substitute_variables_in_file $@
